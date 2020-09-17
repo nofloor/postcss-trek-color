@@ -1,4 +1,4 @@
-import Color from 'color';
+const Color = require('color');
 
 const functions = {
   tint(value) {
@@ -30,4 +30,4 @@ function trekColor(options = {}) {
 
 trekColor.postcss = true;
 
-export default trekColor;
+module.exports = trekColor;
