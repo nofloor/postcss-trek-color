@@ -1,0 +1,21 @@
+{
+  "name": "postcss-trek-color",
+  "version": "0.1.0",
+  "description": "Color functions for Trek.",
+  "main": "index.js",
+  "dependencies": {
+    "color": "^3.1.2"
+  },
+  "devDependencies": {
+    "postcss": "^8.0.3"
+  },
+  "peerDependencies": {
+    "postcss": "^8.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Taha Kelesoglu (nofloor)",
+  "license": "MIT",
+  "type": "module"
+}
