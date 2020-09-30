@@ -3,7 +3,7 @@ const Color = require('color');
 const functions = {
   tint(value) {
     const match = value.match(/tint\((.+)\s?,\s?(\S+)\)/);
-    return Color(match[1]).mix(Color('white'), match[2]).hex();
+    return Color(match[1]).mix(Color('white'), 1 - match[2]).hex();
   },
   shade(value) {
     const match = value.match(/shade\((.+)\s?,\s?(\S+)\)/);
