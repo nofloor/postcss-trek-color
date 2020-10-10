@@ -1,24 +1,26 @@
 const Color = require('color');
 
 const functions = {
-  rgba(value) {
-    const match = value.match(/rgba\((.+)\s?,\s?(\S+)\)/);
-    if (match[1].indexOf('#') === 0) {
-      return Color(match[1]).alpha(match[2]).toString();
-    }
-    return value;
+  mix(value) {
+    return value.replace(/mix\((.+)\s?,\s?(\S+),\s?(\S+)\)/g, (whole, color, mixColor, amount) => {
+      return Color(color).mix(Color(mixColor), amount).hex();
+    });
   },
-  tint(value) {
-    const match = value.match(/tint\((.+)\s?,\s?(\S+)\)/);
-    return Color(match[1]).mix(Color('white'), 1 - match[2]).hex();
+  rgba(value) {
+    return value.replace(/rgba\((.+)\s?,\s?(\S+)\)/g, (whole, arg1, arg2) => {
+      if (arg1.indexOf('#') === 0) return Color(arg1).alpha(arg2).toString();
+      return whole;
+    });
   },
   shade(value) {
-    const match = value.match(/shade\((.+)\s?,\s?(\S+)\)/);
-    return Color(match[1]).mix(Color('black'), match[2]).hex();
+    return value.replace(/shade\((.+)\s?,\s?(\S+)\)/g, (whole, color, amount) => {
+      return Color(color).mix(Color('black'), amount).hex();
+    });
   },
-  mix(value) {
-    const match = value.match(/mix\((.+)\s?,\s?(\S+),\s?(\S+)\)/);
-    return Color(match[1]).mix(Color(match[2]), match[3]).hex();
+  tint(value) {
+    return value.replace(/tint\((.+)\s?,\s?(\S+)\)/g, (whole, color, amount) => {
+      return Color(color).mix(Color('white'), 1 - amount).hex();
+    });
   }
 };
 
