@@ -1,6 +1,13 @@
 const Color = require('color');
 
 const functions = {
+  rgba(value) {
+    const match = value.match(/rgba\((.+)\s?,\s?(\S+)\)/);
+    if (match[1].indexOf('#') === 0) {
+      return Color(match[1]).alpha(match[2]).toString();
+    }
+    return value;
+  },
   tint(value) {
     const match = value.match(/tint\((.+)\s?,\s?(\S+)\)/);
     return Color(match[1]).mix(Color('white'), 1 - match[2]).hex();
@@ -20,7 +27,7 @@ function trekColor(options = {}) {
     postcssPlugin: 'postcss-trek-color',
     Declaration(decl) {
       Object.keys(functions).forEach(key => {
-        if (decl.value.indexOf(key + '(') > -1) {
+        if (decl.value.toString().indexOf(key + '(') > -1) {
           decl.value = functions[key](decl.value);
         }
       });

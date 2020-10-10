@@ -1,6 +1,6 @@
 {
   "name": "postcss-trek-color",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Color functions for Trek.",
   "main": "index.js",
   "dependencies": {
